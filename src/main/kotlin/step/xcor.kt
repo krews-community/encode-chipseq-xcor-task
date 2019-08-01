@@ -163,8 +163,7 @@ fun CmdRunner.subsample_ta_pe(ta:String, subsample:Int,mito_chr_name:String, non
     val ta_tmp = "${prefix}.tagAlign.tmp"
     var cmd = "bash -c \"zcat -f ${ta} |"
     if(non_mito){
-        //# cmd += 'awk \'{{if ($1!="'+mito_chr_name+'") print $0}}\' | '
-        cmd +="grep -v \'^\'${mito_chr_name}\'\' | "
+        cmd += "grep -v \'^${mito_chr_name}\\b\' | "
     }
     cmd += "sed \'N;s/\\n/\\t/\'"
     if(subsample>0){

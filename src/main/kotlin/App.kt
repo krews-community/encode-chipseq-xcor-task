@@ -32,11 +32,11 @@ class Cli : CliktCommand() {
     private val maxRange: Int? by option("-exclusion-range-max", help = "User-defined exclusion range maximum used for ").int()
     private val chipSeqType:String? by option("-chip-seq-type",help = "Chip Seq Type Pipeline").choice("histone","tf").required()
     private val pairedEnd: Boolean by option("-pairedEnd", help = "Paired End").flag()
-    private val nth: Int by option("-nth", help = "Number of threads to parallelize.").int().default(1)
+    private val parallelism: Int by option("-parallelism", help = "Number of threads to parallelize.").int().default(1)
 
     override fun run() {
         val cmdRunner = DefaultCmdRunner()
-        cmdRunner.runTask(taFile,mitoChrName,subsample,speak,minRange,maxRange,nth,chipSeqType,pairedEnd,outputPrefix,outDir)
+        cmdRunner.runTask(taFile,mitoChrName,subsample,speak,minRange,maxRange,parallelism,chipSeqType,pairedEnd,outputPrefix,outDir)
     }
 }
 
